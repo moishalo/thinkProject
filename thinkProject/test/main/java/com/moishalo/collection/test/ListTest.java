@@ -66,7 +66,13 @@ public class ListTest {
 		//打乱顺序
 		Collections.shuffle(subList);
 		System.out.println(subList);
-		//
+		//求交集
+		List l1 = TestDataGenerateUtil.getRandomIntegerList(5);
+		System.out.println(l1);
+		List l2 = TestDataGenerateUtil.getRandomIntegerList(6);
+		System.out.println(l2);
+		l1.retainAll(l2);
+		System.out.println(l1);
 	}
 
 }
