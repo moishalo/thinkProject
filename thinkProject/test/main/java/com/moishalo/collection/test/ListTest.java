@@ -73,6 +73,16 @@ public class ListTest {
 		System.out.println(l2);
 		l1.retainAll(l2);
 		System.out.println(l1);
+		//将集合加到指定位置
+		l1 = TestDataGenerateUtil.getRandomIntegerList(5);
+		System.out.println(l1);
+		l2 = TestDataGenerateUtil.getRandomIntegerList(6);
+		System.out.println(l2);
+		l1.addAll(3,l2);
+		System.out.println(l1);
+		//删除所有元素
+		l1.clear();
+		System.out.println(l1);
 	}
 
 }

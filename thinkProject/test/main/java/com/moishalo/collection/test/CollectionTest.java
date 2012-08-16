@@ -36,23 +36,28 @@ public class CollectionTest {
 	 */
 	@Test
 	public void collectionInitializeTest() {
-		// 通过Arrays.asList方法初始化一个list，并将这个list作为ArrayList的构造参数，构造一个ArrayList
-		long a = System.nanoTime();
-		Collection<Integer> collection = new ArrayList<Integer>(Arrays.asList(
-				1, 2, 3, 4, 5));
-		System.out.println("执行耗时 : " + (System.nanoTime() - a) + " 纳秒 ");
+		for (int i = 0; i < 10; i++) {
+			// 通过Arrays.asList方法初始化一个list，并将这个list作为ArrayList的构造参数，构造一个ArrayList
+			long a = System.nanoTime();
+			Collection<Integer> collection = new ArrayList<Integer>(
+					Arrays.asList(1, 2, 3, 4, 5));
+			System.out.println("new Collection(Collection collection)执行耗时 : "
+					+ (System.nanoTime() - a) + " 纳秒 ");
 
-		// 通过Collection.addAll方法初始化一个list
-		a = System.nanoTime();
-		Collection<Integer> c = new ArrayList<Integer>();
-		c.addAll(Arrays.asList(6, 7, 8, 9, 10));
-		System.out.println("执行耗时 : " + (System.nanoTime() - a) + " 纳秒 ");
+			// 通过Collection.addAll方法初始化一个list
+			a = System.nanoTime();
+			Collection<Integer> c = new ArrayList<Integer>();
+			c.addAll(Arrays.asList(6, 7, 8, 9, 10));
+			System.out.println("Collection.addAll执行耗时 : "
+					+ (System.nanoTime() - a) + " 纳秒 ");
 
-		// 通过Collections.addAll方法初始化list
-		a = System.nanoTime();
-		Collection<Integer> c2 = new ArrayList<Integer>();
-		Collections.addAll(c2, 11, 12, 13, 14, 15);
-		System.out.println("执行耗时 : " + (System.nanoTime() - a) + " 纳秒 ");
+			// 通过Collections.addAll方法初始化list
+			a = System.nanoTime();
+			Collection<Integer> c2 = new ArrayList<Integer>();
+			Collections.addAll(c2, 11, 12, 13, 14, 15);
+			System.out.println("Collections.addAll执行耗时 : "
+					+ (System.nanoTime() - a) + " 纳秒 ");
+		}
 	}
 
 }
