@@ -34,31 +34,34 @@ public class StackTest {
 	 * @Title: stackTest
 	 * @Description: Stack学习测试用例
 	 * @param @throws InstantiationException
-	 * @param @throws IllegalAccessException    设定文件
-	 * @return void    返回类型
+	 * @param @throws IllegalAccessException 设定文件
+	 * @return void 返回类型
 	 * @throws
 	 */
 	@Test
-	public void stackTest() throws InstantiationException, IllegalAccessException {
+	public void stackTest() throws InstantiationException,
+			IllegalAccessException {
 		Stack stack = new Stack();
-		List list = new TestDataGenerateUtil().getRandomIntegerList(10, ArrayList.class);
-		for(Object i : list){
+		List list = new TestDataGenerateUtil().getRandomIntegerList(10,
+				ArrayList.class);
+		for (Object i : list) {
 			stack.push(i);
-			System.out.println("print stack.push:"+stack);
+			System.out.println("print stack.push:" + stack);
 		}
-		while(!stack.empty()){
+		while (!stack.empty()) {
 			Object i = stack.pop();
-			System.out.println("print stack.pop:"+i);
+			System.out.println("print stack.pop:" + i);
 		}
 		Stack<Integer> stack2 = new Stack<Integer>();
-		List list2 = new TestDataGenerateUtil().getRandomIntegerList(10, ArrayList.class);
-		for(Object i : list2){
-			stack2.push((Integer)i);
-			System.out.println("print stack2.push:"+stack2);
+		List list2 = new TestDataGenerateUtil().getRandomIntegerList(10,
+				ArrayList.class);
+		for (Object i : list2) {
+			stack2.push((Integer) i);
+			System.out.println("print stack2.push:" + stack2);
 		}
-		while(!stack2.empty()){
+		while (!stack2.empty()) {
 			Integer i = stack2.pop();
-			System.out.println("print stack2.pop:"+i);
+			System.out.println("print stack2.pop:" + i);
 		}
 	}
 
