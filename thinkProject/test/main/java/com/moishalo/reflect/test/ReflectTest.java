@@ -85,5 +85,16 @@ public class ReflectTest {
 		String methodName = "set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
 		return methodName;
 	}
+	
+	@Test
+	public void supperNameTest(){
+		//TestSubClass.class替换为getXXXService().getClass();
+		Class clazz = TestSubClass.class;
+		while(clazz != null ){
+			System.out.println(clazz.getName());
+			clazz = clazz.getSuperclass();
+		}
+		
+	}
 
 }
