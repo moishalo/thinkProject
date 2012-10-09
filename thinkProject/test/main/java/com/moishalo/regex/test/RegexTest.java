@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * @Title: RegexTest.java
  * @Package com.moishalo.regex.test
@@ -22,6 +21,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RegexTest {
 	Logger logger;
+
 	@Before
 	public void setUp() throws Exception {
 		logger = LoggerFactory.getLogger(this.getClass());
@@ -45,7 +45,7 @@ public class RegexTest {
 		String context1 = "test";
 		String context2 = "/test_test";
 		String context3 = "test_test";
-		
+
 		String uri0 = "/test/testChain/index";
 		String uri1 = "test/testChain/index";
 		String uri2 = "/testChain/index";
@@ -54,19 +54,19 @@ public class RegexTest {
 		String uri5 = "test_test/test_testChain/index";
 		String uri6 = "/test_testChain/index";
 		String uri7 = "test_testChain/index";
-		
+
 		String result = "/testChain/index";
-		
+
 		assertEquals(result, resolveUri(uri0, context0));
 		assertEquals(result, resolveUri(uri1, context0));
 		assertEquals(result, resolveUri(uri2, context0));
 		assertEquals(result, resolveUri(uri3, context0));
-		
+
 		assertEquals(result, resolveUri(uri4, context2));
 		assertEquals(result, resolveUri(uri5, context2));
 		assertEquals(result, resolveUri(uri6, context2));
 		assertEquals(result, resolveUri(uri7, context2));
-		
+
 		assertEquals(result, resolveUri(uri4, context3));
 		assertEquals(result, resolveUri(uri5, context3));
 		assertEquals(result, resolveUri(uri6, context3));
@@ -74,23 +74,23 @@ public class RegexTest {
 	}
 
 	private String resolveUri(String uri, String context) {
-		if(logger.isDebugEnabled()){
+		if (logger.isDebugEnabled()) {
 			logger.debug("Router开始解析uri");
-			logger.debug("请求的uri:"+uri);
-			logger.debug("应用的context:"+context);
+			logger.debug("请求的uri:" + uri);
+			logger.debug("应用的context:" + context);
 		}
-		
-		String perfix ="/";
-		//处理传入的上下文根,如果没有以"/"开头，将"/"拼接到前面
-		if(!context.startsWith(perfix)){
+
+		String perfix = "/";
+		// 处理传入的上下文根,如果没有以"/"开头，将"/"拼接到前面
+		if (!context.startsWith(perfix)) {
 			context = perfix + context;
 		}
-		
-		//处理传入的uri,如果没有以"/"开头，将"/"拼接到前面
-		if(!uri.startsWith(perfix)){
+
+		// 处理传入的uri,如果没有以"/"开头，将"/"拼接到前面
+		if (!uri.startsWith(perfix)) {
 			uri = perfix + uri;
 		}
-		
+
 		String result = uri;
 		// 定义正则表达式
 		Pattern pattern = Pattern.compile("/?.+", Pattern.CASE_INSENSITIVE);
@@ -98,24 +98,53 @@ public class RegexTest {
 		Matcher matcher = pattern.matcher(uri);
 
 		if (matcher.find()) {
-			if(logger.isDebugEnabled()){
+			if (logger.isDebugEnabled()) {
 				logger.debug("matcher group:" + matcher.group());
 			}
-			
+
 			// 判断第一分组是否与上下文根一致，一致的话，去掉上下文根
 			if (context.equals(matcher.group(0))) {
 				result = matcher.replaceFirst("");
 			}
 		} else {
-			if(logger.isDebugEnabled()){
+			if (logger.isDebugEnabled()) {
 				logger.debug("matcher not find");
 			}
 		}
-		
-		if(logger.isDebugEnabled()){
+
+		if (logger.isDebugEnabled()) {
 			logger.debug("解析后的uri为:" + result);
 		}
-		
+
+		return result;
+	}
+
+	@Test
+	public void rrrTest() {
+		String aaa = "/a/b/c/d/e";
+
+		System.out.println(abc(aaa));
+	}
+
+	private String[] abc(String str) {
+		String[] result = null;
+
+		// 定义正则表达式
+		Pattern pattern = Pattern.compile("/\\w?", Pattern.CASE_INSENSITIVE);
+
+		Matcher matcher = pattern.matcher(str);
+		if (matcher.find()) {
+			String a = matcher.group(0);
+
+			System.out.println(a);
+
+			if (null != a && !("".equals(a))) {
+				result = new String[2];
+				result[0] = a;
+				result[1] = str.substring(a.length(), str.length());
+			}
+		}
+
 		return result;
 	}
 }
